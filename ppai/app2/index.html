@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <div id="numbers">
+        <div id="aiNumber">...</div>
+        <input type="number" min="1" max="5" id="playerNumber" placeholder="wpisz">
+    </div>
+    <button id="btn">Sprawdz czy zgadłeś</button>
+    <div id="info">
+        <div id="score"></div>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        const btn = document.querySelector('#btn');
+        const app = document.querySelector('#app');
+        const aiNumber = document.querySelector('#aiNumber');
+        const playerNumber = document.querySelector('#playerNumber');
+        const info = document.querySelector('#info');
+        const score = document.querySelector('#score');
+        const message = document.querySelector('#message');
+
+        let playerScore = 0;
+        let aiScore = 0;
+
+
+        btn.addEventListener('click', function(){
+            let imaginaryNumber = (Math.random() * 5).toFixed(0);
+            aiNumber.innerHTML = imaginaryNumber;
+
+            if(imaginaryNumber == playerNumber.value)
+            {
+                playerScore++;
+                score.innerHTML = "Player: " + playerScore + " AI: " + aiScore;  
+                message.innerHTML = "Brawo zgadles!";
+                if(playerScore==10) app.innerHTML = "<h1>Wow! Wygrałeś</h1>"
+            }
+            else 
+            {
+                aiScore++;
+                score.innerHTML = "Player: " + playerScore + " AI: " + aiScore;
+                message.innerHTML = "Niestety! Punkt dla mnie!";
+                if(aiScore==10) app.innerHTML = "<h1>Ja AI wygrałam!</h1>"
+            }
+        })
+    </script>
+</body>
+</html>

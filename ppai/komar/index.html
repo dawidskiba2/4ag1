@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body{
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        #gra{
+            width: 100%;
+            height: 100%;
+            background-image: url('kuchnia.jpg');
+            cursor: url('packa.png')25 10, auto;
+            
+        }
+        #komar {
+            width: 50px;
+            height: 50px;
+            background-image: url(komar.png);
+
+            position: absolute;
+            left: 200px;
+            top:200px;
+        }
+        header{
+            display: flex;
+            align-items: stretch;
+            width: 100%;
+            height: 10%;
+            background-color: bisque;
+        }
+        #tytul{
+            width: 70%;
+            height: 100%;
+        }
+        #skoki{
+            width: 15%;
+            height: 100%;
+        }
+        #punkty{
+            width: 15%;
+            height: 100%;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div id="tytul">Polowanie na komara</div>
+        <div id="skoki">Skoki: 0</div>
+        <div id="punkty">Punkty: 0</div>
+    </header>
+    <div id="gra">
+        <div id="komar">
+
+        </div>
+    </div>
+    <script>
+        const komar = document.querySelector('#komar');
+
+        const punkty = document.querySelector('#punkty');
+        const skoki = document.querySelector('#skoki');
+
+        let liczbaPunktow = 0;
+        let liczbaSkokow = 0;
+
+        let szerokosc  = window.innerWidth-50;
+        let wysokosc = window.innerHeight-50-(window.innerHeight*0.1);
+
+        function komarLata()
+        {
+        let odlewej = (Math.floor(Math.random() * szerokosc));
+        let odgory = (Math.floor((window.innerHeight*0.1) + (Math.random() * 400)));
+
+        komar.style.left = odlewej + 'px';
+        komar.style.top = odgory + 'px';
+
+        liczbaSkokow++;
+        skoki.innerHTML = 'Skoki: ' + liczbaSkokow;
+
+        if(liczbaPunktow != 3)
+        {
+            setTimeout(komarLata, 2000);
+        }
+        }
+        komarLata();
+
+        komar.addEventListener('click', function(){
+            liczbaPunktow++;
+            punkty.innerHTML = 'Punkty: ' +  liczbaPunktow;
+        })
+
+    </script>
+</body>
+</html>

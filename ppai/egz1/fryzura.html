@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Usługi fryzjerskie</title>
+    <link rel="stylesheet" href="css/style2.css">
+</head>
+<body>
+    <section>
+        <div id="left">
+            <div id="left-top">
+                <h2><a href="index.html">SALON FRYZJERSKI</a></h2>
+                <img src="grafika/obraz2.jpg" alt="czesanie">
+            </div>
+            <div id="left-bottom">
+                <h3>Dziś promocja na strzyżenie włosów.</h3>
+                <label><input type="radio" name="cena" value="25">Krótkie</label>
+                <label><input type="radio" name="cena" value="30">Średnie</label>
+                <label><input type="radio" name="cena" value="40">Półdługie</label>
+                <label><input type="radio" name="cena" value="50">Długie</label>
+                <button id="odkryj">Odkryj promocję</button>
+                <p>Cena strzyżenia: <span id="wybranacena"></span></p>
+            </div>
+        </div>
+        <div id="right">
+            <div id="right-top">
+                <h2>MENU</h2>
+            </div>
+            <div id="right-middle">
+                <ol>
+                    <li><a href="fryzura.html">Strzyżenie</a>
+                        <ul>
+                            <li>krótkie</li>
+                            <li>średnia</li>
+                            <li>półdługie</li>
+                            <li>długie</li>
+                        </ul>
+                    </li>
+                    <li>Czesanie</li>
+                    <li>Koloryzacja</li>
+                </ol>
+            </div>
+            <div id="right-bottom">
+                <img src="grafika/obraz1.jpg" alt="Fryzjer">
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>Autor:12345678910</p>
+    </footer>
+    <script>
+        const odkryjBtn = document.querySelector('#odkryj');
+        const wybranaCenaSpan = document.querySelector('#wybranacena');
+
+        const inputEl = document.querySelectorAll('input');
+
+        let cena = 0;
+
+        odkryjBtn.addEventListener('click', function(){
+            for(let input of inputEl)
+            {
+                if(input.checked) cena = input.value;
+            }
+            wybranaCenaSpan.innerHTML = cena;
+        })
+    </script>
+</body>
+</html>

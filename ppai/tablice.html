@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablice w JS</title>
+</head>
+<body>
+    <h1>Tablice w Java Script</h1>
+    <p><i>Zestaw ćwiczeń powtórzeniowych przed kartkówką praktyczną z tematu: <b>definiowanie, wyżwietlanie i przetwarzanie tablic w JavaScript.</b></i></p>
+    
+
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    
+    <hr>
+    <h2>Ćw 1. Wyświetl zawartość tablicy, skorzystaj z pętli for-of</h2>
+    <div id="cw1"></div>
+    <script>
+        let numbersArr = [5,7,8,12,4,5,23,45,78,12,3];
+        const cw1 = document.querySelector('#cw1');
+        let html2 = '';
+        for(const element of numbersArr)
+        {
+            html2 += element + ' ';
+        }
+        cw1.innerHTML = html2;
+        
+    </script>
+
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <hr>
+    <h2>Ćw 2. Wyświetl zawartość tablicy, skorzystaj z metody .join(), osoby rozdzilel pionowymi kreskami |</h2>
+    <div id="cw2"></div>
+    <script>
+        let personsArr = ["Jan Nowak","Kazimierz Zyga","Stefan Koc","Ewa Mocek","Mariusz Abramski"];
+        const cw2 = document.querySelector('#cw2');
+
+        cw2.innerHTML = (personsArr.join('|'))
+    </script>
+
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <hr>
+    <h2>Ćw 3. Wyświetl zawartość tablicy, skorzystaj z pętli for-of, osoby, rozdziel przecinakmi , wyświetl najpierw nazwisko, potem imię</h2>
+    <div id="cw3"></div>
+    <script>
+        personsArr = [
+            ["Jan","Nowak"],
+            ["Kazimierz","Zyga"],
+            ["Stefan","Koc"],
+            ["Ewa","Mocek"],
+            ["Mariusz","Abramski"]
+        ];    
+
+        const cw3 = document.querySelector('#cw3');
+        let html = '';
+
+        for(const element of personsArr)
+        {
+            html += element.reverse() + ' '; 
+        }
+        cw3.innerHTML = html;
+
+        
+    </script>
+
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <hr>
+    <h2>Ćw 4. Za pomocą instrukcji .map() utwórz tablicę składającą się z ciągów tekstowych (imię i nazwisko), wyświetl w konsoli </h2>
+    <div id="cw4"></div>
+    <script>
+        personsArr = [
+            ["Jan","Nowak"],
+            ["Kazimierz","Zyga"],
+            ["Stefan","Koc"],
+            ["Ewa","Mocek"],
+            ["Mariusz","Abramski"]
+        ];    
+        arr = personsArr.map(e => e[0] + ' ' + e[1]);
+        console.log(arr);
+
+        
+    </script>
+
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <hr>
+    <h2>Ćw 5. Wyświetl zawartość tablicy, skorzystaj z instrukcji .map() i .join(), rozdziel średnikami</h2>
+    <div id="cw5"></div>
+    <script>
+        personsArr = [
+            ["Jan","Nowak"],
+            ["Kazimierz","Zyga"],
+            ["Stefan","Koc"],
+            ["Ewa","Mocek"],
+            ["Mariusz","Abramski"]
+        ];    
+        const cw5 = document.querySelector('#cw5');
+        arr = personsArr.map(e => e[0] + ' ' + e[1]);
+        arr = arr.join(';');
+        cw5.innerHTML = arr;
+
+        
+        
+    </script>
+
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <hr>
+    <h2>Ćw 6. W div-ie, Wyświetl zawartość tablicy, skorzystaj z instrukcji .map() i .join(), rozdziel średnikami</h2>
+    <div id="cw6"></div>
+    <script>
+        workersArr = [
+            {
+                imie: "Jan",
+                nazwisko: "Kot",
+                wiek: 21
+            },
+            {
+                imie: "Tomasz",
+                nazwisko: "Mróz",
+                wiek: 27
+            },
+            {
+                imie: "Ewelina",
+                nazwisko: "Maniek",
+                wiek: 22
+            },
+            {
+                imie: "Maja",
+                nazwisko: "Naniek",
+                wiek: 28
+            },
+        ];    
+
+        const cw6 = document.querySelector('#cw6');
+        arr = workersArr.map(e => e['imie'] + ' ' + e['nazwisko'] + ' ' + e['wiek']);
+        arr = arr.join(';')
+        cw6.innerHTML = arr;
+       
+        
+    </script>
+</body>
+</html>

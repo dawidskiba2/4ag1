@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .app-img{
+            height: 500px;
+        }
+        img{
+            width: 420px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="app-img">
+            <img src="jesien.jpg" alt="jesien">
+        </div>
+        <div class="app-btn">
+            <button name="color">black & white</button>
+            <button name="blur">rozmycie</button>
+            <button name="plus">+</button>
+            <button name="minus">-</button>
+        </div>
+    </div>
+
+
+    <script>
+        const img = document.querySelector('img');
+        img.style.width = "420px";
+        let width = 420
+        document.querySelector('.app-btn').addEventListener('click', e =>{
+            switch(e.target.name){
+                case 'color':
+                    img.style.filter = "grayscale(100%)"
+                    break;
+                case 'blur':
+                    img.style.filter = "blur(3px)"
+                    break;
+                case 'plus':
+                    width += 10 
+                    img.style.width = width + "px"
+                    break;
+                case 'minus': 
+                    width -= 10
+                    img.style.width = width + "px"
+                    break;
+                default: 
+                    alert('kliknij na przycisk');
+            }
+            
+        })
+    </script>
+</body>
+</html>

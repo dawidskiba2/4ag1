@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pl-PL">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kontakty</title>
+    <style>
+        th , td {
+            padding:10px;
+            border:1px solid darkgrey;
+        }
+        label, input[type="submit"] {
+            margin-top:18px;
+            display:block;
+        }
+    </style>    
+  </head>
+  <body>
+        <h1>CRUD - Baza danych kontakty - CREATE</h1>
+        <p><i>CREATE - dodawanie danych </i></p>
+        <hr>
+        <?php
+        // ----- TO MUSI BYĆ PIERWSZE ------------------
+        $link = mysqli_connect('localhost','root','','kontakty');
+
+        // WARUNKOWE WYŚWIETLANIE FORMULARZA, BRAK DODAWANIA DANYCH
+        if(isset($_GET['ido']) && !isset($_POST['imie']))
+        {
+            $ido = $_GET['ido'];
+            $wynik = mysqli_query($link,"SELECT * FROM osoby WHERE ido='$ido'");
+            foreach($wynik as $wiersz) {}
+
+            ?>    
+                <form method="post" action="update.php">
+                    <label for="imie">Podaj imię:</label>
+                    <input type="text" name="imie" id="imie" value="<?php echo $wiersz['imie']; ?>">
+                    <label for="nazwisko">Podaj nazwisko:</label>
+                    <input type="text" name="nazwisko" id="nazwisko" value="<?php echo $wiersz['nazwisko']; ?>">            
+                    <label for="typ">Wybierz typ:</label>    
+                    <select name="rodzaj" id="typ">
+                        <option value="-">-</option>
+                        <option value="R" <?php if($wiersz['rodzaj']=='R') echo "selected";  ?> >Rodzina</option>          
+                        <option value="Z" <?php if($wiersz['rodzaj']=='Z') echo "selected";  ?>  >Znajomi</option> 
+                        <option value="P" <?php if($wiersz['rodzaj']=='P') echo "selected";  ?>  >Praca</option>                                       
+                    </select>
+                    <label for="telefon">Podaj telefon:</label>  
+                    <input type="text" name="telefon" id="telefon" value="<?php echo $wiersz['telefon']; ?>">   
+                    <label for="dataur">Podaj datę urodzin:</label>  
+                    <input type="text" name="dataur" id="dataur" value="<?php echo $wiersz['dataur']; ?>"> 
+                    <!-- trzeba dodać ido -->
+                    <input type="hidden" name="ido" value="<?php echo $wiersz['ido']; ?>"> 
+                    <input type="submit" value="Zmien dane">
+                </form>  
+            <?php
+        }
+        ?>      
+        
+    
+
+        <hr>
+            <table> 
+                <thead>
+                    <tr>
+                        <th>imię</th>
+                        <th>nazwisko</th>
+                        <th>typ</th>
+                        <th>telefon</th>
+                        <th>data ur.</th>
+                        <th>E</th>                        
+                    </tr>
+                </thead>    
+                <tbody>
+                    <?php
+                        if(isset($_POST['ido']) && isset($_POST['imie']))
+                        {
+                            $ido = $_POST['ido'];
+                            $imie = $_POST['imie'];
+                            $nazwisko = $_POST['nazwisko'];
+                            $telefon = $_POST['telefon'];
+                            $rodzaj = $_POST['rodzaj'];
+                            $dataur = $_POST['dataur'];
+
+                            $wynik = mysqli_query($link, "UPDATE osoby SET imie='$imie', nazwisko='$nazwisko', telefon='$telefon', rodzaj='$rodzaj', dataur='$dataur' WHERE ido='$ido'");
+                        }
+
+                            // ------ ODCZYTYWANIE DANYCH -------------------
+                            
+                            $wynik = mysqli_query($link,"SELECT * FROM osoby");
+                                foreach($wynik as $wiersz)
+                                {
+                                    echo "<tr>";
+                                        echo "<td>{$wiersz['imie']}</td>";
+                                        echo "<td>{$wiersz['nazwisko']}</td>";
+                                        echo "<td>{$wiersz['rodzaj']}</td>";
+                                        echo "<td>{$wiersz['telefon']}</td>";
+                                        echo "<td>{$wiersz['dataur']}</td>";
+                                        echo "<td><a href=\"update.php?ido={$wiersz['ido']}\">E</a></td>";
+                                    echo "</tr>";
+                                }
+                            mysqli_free_result($wynik);
+                            mysqli_close($link);
+                    ?>
+                </tbody>    
+            </table>
+  </body>
+</html>

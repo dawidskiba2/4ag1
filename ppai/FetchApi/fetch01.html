@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Api</title>
+    <style>
+    .users {display:flex; flex-wrap:wrap;}
+    .user {width:330px; display: flex; margin: 5px; padding: 5px; border: 1px solid lightgrey; border-radius: 10px;}
+    .user p {margin: 0; margin-left: 10px;}
+    </style>
+</head>
+<body>
+    <h1>Pobieranie danych z API z wykorzystaniem Fetch</h1>
+    <p>Pobierz dane jednego przypadkowego użytkownika</p>
+    <hr>
+    <div class="users">
+    </div>
+
+    <script>
+        window.onload = function(){
+            fetch('https://randomuser.me/api/?results=50')
+            .then(response => response.json())
+            .then(data => dataReady(data))
+            .catch(error => (alert("Problem przy polaczeniu z serwerem")))
+        }
+        function dataReady(data){
+            for(let result of data.results){
+                console.log(result);
+                document.querySelector('.users').innerHTML +=`
+                        <div class="user">
+                            <img src="${result.picture.medium}" alt="osoba>
+                                                              </div>
+                            <div class="user_data">
+                                 <p>${result.name.title}</p>
+                                 <p>${result.name.first} ${result.name.last}</p>
+                                 <p>email: ${result.email}</p>
+                            </div>
+                       </div>`;
+            }
+
+
+        }
+    </script>
+</body>
+</html>

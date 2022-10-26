@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+<body>
+    <form action="">
+        <label for="liczba1">Liczba 1: </label>
+        <input type="number" id="liczba1" min="0" max="255"><br>
+        <label for="liczba2">Liczba 2:</label>
+        <input type="number" id="liczba2" min="0" max="255"><br>
+        <label for="liczba3">Liczba 3:</label>
+        <input type="number" id="liczba3" min="0" max="255">
+    </form>
+    <button>Oblicz</button>
+    <hr>
+    <div id="app"></div>
+
+    <script>
+        const liczba1 = document.getElementById('liczba1');
+        const liczba2 = document.getElementById('liczba2');
+        const liczba3 = document.getElementById('liczba3');
+        const btn = document.querySelector('button');
+        const app = document.getElementById('app');
+
+        btn.addEventListener('click', function(){
+            btn.style.backgroundColor = `rgb(${Number(liczba1.value)}, ${Number(liczba2.value)}, ${Number(liczba3.value)})`;
+        })
+    </script>
+</body>
+</html>

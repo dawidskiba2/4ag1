@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Praca z danymi w formacie JSON</h1>
+    <p>Wyświetlanie ofert w konsoli</p>
+    <hr>
+    <span class="label">0</span>
+    <input type="range" id="min" min="0" max="100000">
+    <span class="label">100000</span>
+
+    <div>od: <span id="minvalue"></span> do: <span id="maxvalue"></span></div>
+    <span class="label" id="labelmin">0</span>
+    <input type="range" id="max" min="0" max="100000">
+    <span class="label">100000</span>
+
+    <div id="offersList"></div>
+    <script src="oferty.json"></script>
+    <script>
+        document.getElementById('min').addEventListener('input', function(){
+            setParameters();
+        })
+        document.getElementById('max').addEventListener('input', function(){
+            setParameters();
+        })
+
+
+        showOffers(3000,6000);
+
+        function showOffers(min,max){
+            document.getElementById('offersList').innerHTML = 
+            offers.filter(offer => Number(offer.cenas) >= Number(min) && Number(offer.cenas) <= Number(max))
+            .map(offer => offer.marka + ' ' + offer.cenas + ' zł.').join('<br>');
+        }
+
+        function setParameters(){
+            min = document.getElementById('min').value;
+            max = document.getElementById('max').value;
+            showOffers(min,max);
+
+            document.getElementById('minvalue').innerHTML = min;
+            document.getElementById('maxvalue').innerHTML = max;
+
+            document.getElementById('max').setAttribute('min', Number(min)+100);
+            document.getElementById('labelmin').innerHTML =  Number(min)+100;
+        }
+    </script>
+</body>
+</html>

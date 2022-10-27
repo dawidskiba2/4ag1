@@ -1,0 +1,4 @@
+'324243', 'Adam' , 'Słodowy'), 
+'348989', 'Kamil' , 'Nowak'), 
+'233892', 'Marek' , 'Kowalski'), 
+'123488', 'Piotr' , 'Wasilewski'),

@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "..\\3atgr1"
+		},
+		{
+			"path": "..\\3ct"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "3ct"
+	}
+}

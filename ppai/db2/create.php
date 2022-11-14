@@ -14,25 +14,28 @@
 </head>
 <body>
     <h1>CRUD - Baza danych kontakty - READ</h1>
-    <p><i>DELETE - usuwanie danych</i></p>
+    <p><i>CREATE - dodawanie danych</i></p>
     <hr>
+    <form action="create.php" method="post">
+        <label for="mail">Podaj mail</label>
+        <input type="text" name="mail" id="mail">
+        <input type="submit" value="Dodaj mail">
+    </form>
     <table>
-        <tr><th>Email</th><th>Usuń</th></tr>
+        <tr><th>Email</th></tr>
         <?php
             $link = mysqli_connect('localhost', 'root', '', 'dane5');
 
-            if(isset($_GET['id']))
+            if(isset($_POST['mail']))
             {
-                $id = $_GET['id'];
-                mysqli_query($link, "DELETE FROM maile WHERE id='$id'");
+                $mail = $_POST['mail'];
+                mysqli_query($link, "INSERT INTO maile(id, mail) VALUES (NULL, '$mail')");
             }
-
-            $wynik = mysqli_query($link, "SELECT * FROM maile");
+            $wynik = mysqli_query($link, "SELECT * FROM maile ORDER BY id DESC");
                 foreach($wynik as $wiersz)
                 {
                     echo '<tr>';
                         echo '<td>'.$wiersz['mail'].'</td>';
-                        echo "<td><a href=\"delete.php?id={$wiersz['id']}\">X</a></td>";
                     echo '</tr>';
                 }
             mysqli_free_result($wynik);

@@ -14,17 +14,33 @@
 </head>
 <body>
     <h1>CRUD - Baza danych kontakty - READ</h1>
-    <p><i>DELETE - usuwanie danych</i></p>
+    <p><i>UPDATE - edycja danych</i></p>
     <hr>
     <table>
-        <tr><th>Email</th><th>Usuń</th></tr>
+        <tr><th>Email</th><th>Edytuj</th></tr>
         <?php
             $link = mysqli_connect('localhost', 'root', '', 'dane5');
 
             if(isset($_GET['id']))
             {
                 $id = $_GET['id'];
-                mysqli_query($link, "DELETE FROM maile WHERE id='$id'");
+                $wynik = mysqli_query($link, "SELECT * FROM  maile WHERE id='$id'");
+                foreach($wynik as $wiersz) {}
+            ?>
+                <form action="update.php" method="post">
+                    <label for="mail">Podaj mail</label>
+                    <input type="text" name="mail" id="mail" value="<?php echo $wiersz['mail']; ?>">
+                    <input type="hidden" name="id" value="<?php echo $wiersz['id']; ?>">
+                    <input type="submit" value="Zmień email">
+                </form>
+            <?php
+            }
+
+            if(isset($_POST['id']))
+            {
+                $id = $_POST['id'];
+                $mail = $_POST['mail'];
+                mysqli_query($link, "UPDATE maile SET mail= '$mail' WHERE id = '$id'");
             }
 
             $wynik = mysqli_query($link, "SELECT * FROM maile");
@@ -32,7 +48,7 @@
                 {
                     echo '<tr>';
                         echo '<td>'.$wiersz['mail'].'</td>';
-                        echo "<td><a href=\"delete.php?id={$wiersz['id']}\">X</a></td>";
+                        echo "<td><a href=\"update.php?id={$wiersz['id']}\">E</a></td>";
                     echo '</tr>';
                 }
             mysqli_free_result($wynik);

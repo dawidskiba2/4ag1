@@ -1,3 +1,4 @@
+
 <?php
     if(!isset($_COOKIE['skrypt2']))
     {
